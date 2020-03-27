@@ -7,66 +7,7 @@
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Helvetica Neue', Helvetica, Arial, Sans-serif;
-    }
-
-    #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-    }
-
-    h1 {
-        font-size: 20px;
-        line-height: 30px;
-    }
-
-    h2 {
-        font-size: 14px;
-        line-height: 20px;
-        margin-bottom: 10px;
-    }
-
-    a {
-        text-decoration: none;
-        color: #2dc4b2;
-    }
-
-    #console {
-        position: absolute;
-        width: 240px;
-        margin: 10px;
-        padding: 10px 20px;
-        background-color: white;
-    }
-    .session {
-        margin-bottom: 20px;
-    }
-
-    .row {
-        height: 12px;
-        width: 100%;
-    }
-
-    .colors {
-        background: linear-gradient(to right, #2dc4b2, #3bb3c3, #669ec4, #8b88b6, #a2719b, #aa5e79);
-        margin-bottom: 5px;
-    }
-
-    .label {
-        width: 15%;
-        display: inline-block;
-        text-align: center;
-    }
-    .title-color {
-        color: #aa5e79;
-    }
-</style>
+<link rel="stylesheet" href="style.css">
 <body>
 <div id='map'></div>
 <div id='console'>
@@ -101,75 +42,7 @@
         </div>
     </div>
 </div>
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic29yb3VzaHlzZiIsImEiOiJjazg5ZXdkZHAwNjhiM2RxbjNsZWx6cjhyIn0.-yR705SRfIWdfIp8CpT1cA';
-
-    var map = new mapboxgl.Map({
-        container: 'map', // container element id
-        style: 'mapbox://styles/mapbox/light-v10',
-        center: [-87.6298, 41.8781], // initial map center in [lon, lat]
-        zoom: 12
-    });
-
-    map.on('load', function() {
-        map.addLayer({
-            id: 'collisions',
-            type: 'circle',
-            source: {
-                type: 'geojson',
-                data: './chicago-crime-geo.geojson' // replace this with the url of your own geojson
-            },
-            paint: {
-                'circle-radius': [
-                    'interpolate',
-                    ['linear'],
-                    ['number', ['get', 'Casualty']],
-                    0, 4,
-                    5, 24
-                ],
-                'circle-color': [
-                    'interpolate',
-                    ['linear'],
-                    ['number', ['get', 'Casualty']],
-                    0, '#2DC4B2',
-                    1, '#3BB3C3',
-                    2, '#669EC4',
-                    3, '#8B88B6',
-                    4, '#A2719B',
-                    5, '#AA5E79'
-                ],
-                'circle-opacity': 0.8
-            }
-        });
-        document.getElementById('slider').addEventListener('input', function(e) {
-            var hour = parseInt(e.target.value);
-            // update the map
-            map.setFilter('collisions', ['==', ['number', ['get', 'Hour']], hour]);
-
-            // converting 0-23 hour to AMPM format
-            var ampm = hour >= 12 ? 'PM' : 'AM';
-            var hour12 = hour % 12 ? hour % 12 : 12;
-
-            // update text in the UI
-            document.getElementById('active-hour').innerText = hour12 + ampm;
-        });
-        document.getElementById('filters').addEventListener('change', function(e) {
-            var day = e.target.value;
-            // update the map filter
-            if (day === 'all') {
-                filterDay = ['!=', ['string', ['get', 'Day']], 'placeholder'];
-            } else if (day === 'weekday') {
-                filterDay = ['match', ['get', 'Day'], ['Sat', 'Sun'], false, true];
-            } else if (day === 'weekend') {
-                filterDay = ['match', ['get', 'Day'], ['Sat', 'Sun'], true, false];
-            } else {
-                console.log('error');
-            }
-            map.setFilter('collisions', ['all', filterDay]);
-        });
-    });
-
-</script>
+<script src="map.js"></script>
 
 </body>
 
