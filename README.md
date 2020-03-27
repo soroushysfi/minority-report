@@ -19,7 +19,9 @@ To convert the csv file you just have to run:
 
 ### Running the Server
 
-By a running a simple python server index.html will be served on 8000(changeable):  
+By running a simple python server index.html will be served on port 8000(changeable):  
 
 `$ python -m SimpleHTTPServer 8000`
 
+
+And then open your browser to: [localhost:8000](http://localhost:8000)

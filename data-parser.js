@@ -32,7 +32,8 @@ function parsingData (dataFile) {
         "CRIM SEXUAL ASSAULT": "toilet",
         "MOTOR VEHICLE THEFT": "scooter",
         "OFFENSE INVOLVING CHILDREN": "playground",
-        "LIQUOR LAW VIOLATION": "alcohol-shop"
+        "LIQUOR LAW VIOLATION": "alcohol-shop",
+        "HOMICIDE": "danger"
     }
 
     let newDate = '';
