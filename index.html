@@ -6,7 +6,7 @@
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./style.css">
 <body>
 <div id='map'></div>
 <div id='console'>
@@ -16,6 +16,7 @@
         <h2>Hour: <label id='active-hour'>12PM</label></h2>
         <input id='slider' class='row' type='range' min='0' max='23' step='1' value='12' />
     </div>
+    <hr>
     <div class='session'>
         <h2>Day of the week</h2>
         <div class='row' id='filters'>
@@ -25,6 +26,33 @@
             <label for='weekday'>Weekday</label>
             <input id='weekend' type='radio' name='toggle' value='weekend'>
             <label for='weekend'>Weekend</label>
+        </div>
+    </div>
+    <hr>
+    <div class='session margin_top_50'>
+        <h2>Helper</h2>
+
+        <div class='my-row'>
+            <div class="my-column">
+            <p class="text-legend">Burglary & Robbery: <span> <img src="icons/pitch-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend">Theft: <span> <img src="icons/baseball-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend">Criminal Damage: <span> <img src="icons/cross-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend">Narcotics: <span> <img src="icons/garden-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend">Deceptive Practice: <span> <img src="icons/square-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend">Battery: <span> <img src="icons/star-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend">Weapons Violation: <span> <img src="icons/fire-station-JP-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend">Criminal Trespass: <span> <img src="icons/roadblock-15.svg" class="icons-legend" alt=""></span></p>
+            </div>
+            <div class="my-column">
+            <p class="text-legend left-padding">Public Peace Violation: <span> <img src="icons/parking-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend left-padding">Sexual Assault: <span> <img src="icons/toilet-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend left-padding">Motor Vehicle Theft: <span> <img src="icons/scooter-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend left-padding">Offense Invl Children: <span> <img src="icons/playground-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend left-padding">Liquor Law Violation: <span> <img src="icons/alcohol-shop-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend left-padding">Homicide: <span> <img src="icons/danger-15.svg" class="icons-legend" alt=""></span></p>
+            <p class="text-legend left-padding">Other Offense: <span> <img src="icons/triangle-15.svg" class="icons-legend" alt=""></span></p>
+
+            </div>
         </div>
     </div>
 </div>

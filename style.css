@@ -36,10 +36,28 @@ a {
 }
 .session {
     margin-bottom: 20px;
+
+}
+.my-column {
+    float: left;
+    width: 50%;
+}
+.left-padding {
 }
 
+/* Clear floats after the columns */
+.my-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.icons-legend {
+    width: 20px;
+}
+.text-legend{
+    font-size: 9px;
+}
 .row {
-    height: 12px;
     width: 100%;
 }
 
