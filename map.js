@@ -15,9 +15,11 @@ let legendList = [
     {label: 6*dist+1+' - '+ 7*dist, color:"#8c2d04" }
 ];
 
-let container = document.getElementById('legend');
+let containerLeft = document.getElementById('left');
+let containerRight = document.getElementById('right');
 
-legendList.forEach(legend => {
+legendList.forEach((legend, i) => {
+
     {
         let boxContainer = document.createElement("DIV");
         let box = document.createElement("DIV");
@@ -36,8 +38,12 @@ legendList.forEach(legend => {
 
         boxContainer.appendChild(box);
         boxContainer.appendChild(label);
+        if(i <= 3) {
+            containerLeft.appendChild(boxContainer);
+        } else {
+            containerRight.appendChild(boxContainer);
+        }
 
-        container.appendChild(boxContainer);
 
     }
 })
