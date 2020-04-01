@@ -1,15 +1,64 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoic29yb3VzaHlzZiIsImEiOiJjazg5ZXdkZHAwNjhiM2RxbjNsZWx6cjhyIn0.-yR705SRfIWdfIp8CpT1cA';
+let categories = [];
+beatsData.forEach(beat => {
+    categories.push(beat.crimes);
+})
+categories = categories.sort();
+let dist = categories[categories.length - 1]/5;
 
 var map = new mapboxgl.Map({
     container: 'map', // container element id
     style: 'mapbox://styles/soroushysf/ck89ey5b100vk1ho3dwjky9qz',
-    center: [-87.6298, 41.8781], // initial map center in [lon, lat]
-    zoom: 12
+    center: [-87.7098, 41.8381], // initial map center in [lon, lat]
+    zoom: 10
 });
 
 map.on('load', function() {
     map.addLayer({
-        'id': 'collisions',
+        'id': 'police_beat_choropleth',
+        'type': 'fill',
+        'layout': {},
+        'paint': {
+            'fill-color': [
+                'interpolate',
+                ['linear'],
+                ['get', 'crime_num'],
+                0,
+                '#F2F12D',
+                dist,
+                '#EED322',
+                2*dist,
+                '#E6B71E',
+                3*dist,
+                '#DA9C20',
+                4*dist,
+                '#CA8323',
+                5*dist,
+                '#B86B25',
+                6*dist,
+                '#A25626'
+            ],
+            'fill-opacity': 0.6
+        },
+        source: {
+            type: 'geojson',
+            data: './Chicago_Boundaries.geojson'
+        }
+    });
+    map.addLayer({
+        'id': 'police_beat',
+        'type': 'line',
+        'layout': {},
+        'paint': {
+            'line-color': '#67000d',
+        },
+        source: {
+            type: 'geojson',
+            data: './Chicago_Boundaries.geojson'
+        }
+    });
+    map.addLayer({
+        'id': 'crimes',
         'type': 'symbol',
         'layout': {
             'icon-image': ['concat', ['get', 'icon'], '-15'],
@@ -26,10 +75,12 @@ map.on('load', function() {
             data: './chicago-crime-geo.geojson'
         },
     });
+    map.setFilter('crimes', ['==', ['number', ['get', 'Hour']], 12]);
+
     document.getElementById('slider').addEventListener('input', function(e) {
         var hour = parseInt(e.target.value);
         // update the map
-        map.setFilter('collisions', ['==', ['number', ['get', 'Hour']], hour]);
+        map.setFilter('crimes', ['==', ['number', ['get', 'Hour']], hour]);
 
         // converting 0-23 hour to AMPM format
         var ampm = hour >= 12 ? 'PM' : 'AM';
@@ -50,6 +101,6 @@ map.on('load', function() {
         } else {
             console.log('error');
         }
-        map.setFilter('collisions', ['all', filterDay]);
+        map.setFilter('crimes', ['all', filterDay]);
     });
 });
