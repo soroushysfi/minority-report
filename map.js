@@ -28,13 +28,7 @@ legendList.forEach((legend, i) => {
         label.innerHTML = legend.label;
         box.className = "box";
         box.style.backgroundColor = legend.color;
-        box.style.height = '10px';
-        box.style.width = '10px';
-        box.style.display = 'inline-block';
-        box.style.border = '1px solid';
-        box.style["margin-right"] = '5px';
         label.style["font-size"] = "small";
-        box.style["margin-top"] = '5px';
 
         boxContainer.appendChild(box);
         boxContainer.appendChild(label);

@@ -26,8 +26,16 @@ a {
     text-decoration: none;
     color: #2dc4b2;
 }
-label {
+label span {
     font-size: small !important;
+}
+.box {
+    height : 10px;
+    width : 10px;
+    display : inline-block;
+    border : 1px solid;
+    margin-right : 5px;
+    margin-top : 5px;
 }
 #console {
     position: absolute;
