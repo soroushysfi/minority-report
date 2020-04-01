@@ -42,8 +42,6 @@ a {
     float: left;
     width: 50%;
 }
-.left-padding {
-}
 
 /* Clear floats after the columns */
 .my-row:after {

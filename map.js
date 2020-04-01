@@ -4,12 +4,47 @@ beatsData.forEach(beat => {
     categories.push(beat.crimes);
 })
 categories = categories.sort();
-let dist = categories[categories.length - 1]/5;
+let dist = Math.round(categories[categories.length - 1]/5);
+let legendList = [
+    {label: `0`+' - '+dist, color:"#ffffd4" },
+    {label: dist+1+' - '+2*dist, color:"#fee391" },
+    {label: 2*dist+1+' - '+3*dist, color:"#fec44f" },
+    {label: 3*dist+1+' - '+4*dist, color:"#fe9929" },
+    {label: 4*dist+1+' - '+5*dist, color:"#ec7014" },
+    {label: 5*dist+1+' - '+6*dist, color:"#cc4c02" },
+    {label: 6*dist+1+' - '+ 7*dist, color:"#8c2d04" }
+];
 
+let container = document.getElementById('legend');
+
+legendList.forEach(legend => {
+    {
+        let boxContainer = document.createElement("DIV");
+        let box = document.createElement("DIV");
+        let label = document.createElement("SPAN");
+
+        label.innerHTML = legend.label;
+        box.className = "box";
+        box.style.backgroundColor = legend.color;
+        box.style.height = '10px';
+        box.style.width = '10px';
+        box.style.display = 'inline-block';
+        box.style.border = '1px solid';
+        box.style["margin-right"] = '5px';
+        label.style["font-size"] = "small";
+        box.style["margin-top"] = '5px';
+
+        boxContainer.appendChild(box);
+        boxContainer.appendChild(label);
+
+        container.appendChild(boxContainer);
+
+    }
+})
 var map = new mapboxgl.Map({
     container: 'map', // container element id
     style: 'mapbox://styles/soroushysf/ck89ey5b100vk1ho3dwjky9qz',
-    center: [-87.7098, 41.8381], // initial map center in [lon, lat]
+    center: [-87.6498, 41.8381], // initial map center in [lon, lat]
     zoom: 10
 });
 
@@ -24,21 +59,21 @@ map.on('load', function() {
                 ['linear'],
                 ['get', 'crime_num'],
                 0,
-                '#F2F12D',
+                '#ffffd4',
                 dist,
-                '#EED322',
+                '#fee391',
                 2*dist,
-                '#E6B71E',
+                '#fec44f',
                 3*dist,
-                '#DA9C20',
+                '#fe9929',
                 4*dist,
-                '#CA8323',
+                '#ec7014',
                 5*dist,
-                '#B86B25',
+                '#cc4c02',
                 6*dist,
-                '#A25626'
+                '#8c2d04'
             ],
-            'fill-opacity': 0.6
+            'fill-opacity': 0.75
         },
         source: {
             type: 'geojson',
@@ -50,7 +85,7 @@ map.on('load', function() {
         'type': 'line',
         'layout': {},
         'paint': {
-            'line-color': '#67000d',
+            'line-color': '#8b0000',
         },
         source: {
             type: 'geojson',
