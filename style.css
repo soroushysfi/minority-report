@@ -26,12 +26,19 @@ a {
     text-decoration: none;
     color: #2dc4b2;
 }
-label span {
-    font-size: small !important;
-}
+
 .box {
     height : 10px;
     width : 10px;
+    display : inline-block;
+    border : 1px solid;
+    margin-right : 5px;
+    margin-top : 5px;
+}
+.box-circle {
+    height : 10px;
+    width : 10px;
+    border-radius: 8px;
     display : inline-block;
     border : 1px solid;
     margin-right : 5px;
@@ -81,4 +88,13 @@ label span {
 }
 .title-color {
     color: #aa5e79;
+}
+.text-size-small {
+    font-size: 12px;
+}
+.font-size-small {
+    font-size: 12px;
+}
+label  {
+    font-size: small !important;
 }

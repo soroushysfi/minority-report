@@ -96,7 +96,7 @@ map.on('load', function() {
         'id': 'crimes',
         'type': 'symbol',
         'layout': {
-            'icon-image': ['concat', ['get', 'icon'], '-15'],
+            'icon-image': ['get', 'icon'],
             'icon-size': 3,
             'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
             'text-offset': [0, 0.6],
