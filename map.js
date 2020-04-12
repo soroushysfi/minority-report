@@ -97,10 +97,11 @@ map.on('load', function() {
         'type': 'symbol',
         'layout': {
             'icon-image': ['get', 'icon'],
-            'icon-size': 3,
+            'icon-size': 1,
             'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
             'text-offset': [0, 0.6],
-            'text-anchor': 'top'
+            'text-anchor': 'top',
+            'icon-allow-overlap': true
         },
         'paint': {
             'icon-color': "#c05e58"
