@@ -81,7 +81,6 @@ function parsingData (dataFile) {
                 }
             })
         })
-        console.log(chicagoCrimeGEOJSON.features.length);
         let beatsFile = 'beatsData = '+JSON.stringify(beatsJson);
         fs.writeFileSync('Chicago_Boundaries.geojson', JSON.stringify(newData));
         fs.writeFileSync('chicago-crime-geo.geojson', JSON.stringify(chicagoCrimeGEOJSON));

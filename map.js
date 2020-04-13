@@ -111,10 +111,12 @@ map.on('load', function() {
             data: './chicago-crime-geo.geojson'
         },
     });
-    map.setFilter('crimes', ['==', ['number', ['get', 'Hour']], 12]);
+    let hour_g = 12, filterHour = ['==', ['number', ['get', 'Hour']], 12];
+    map.setFilter('crimes', filterHour);
 
     document.getElementById('slider').addEventListener('input', function(e) {
         var hour = parseInt(e.target.value);
+        hour_g = hour;
         // update the map
         map.setFilter('crimes', ['==', ['number', ['get', 'Hour']], hour]);
 
@@ -137,6 +139,19 @@ map.on('load', function() {
         } else {
             console.log('error');
         }
-        map.setFilter('crimes', ['all', filterDay]);
+        map.setFilter('crimes', ['all', filterDay, filterHour]);
     });
+    // map.setFilter('crimes', ['match', ['get', 'icon'], ['baseball-true'], true, false]);
+
+    let pElements = document.getElementsByClassName("filter-button");
+    let pFunction = function(e) {
+        const filterText = e.toElement.children[0].textContent;
+        const filterIcons = ['match', ['get', 'icon'], [filterText+'-true', filterText+'-false'], true, false];
+        map.setFilter('crimes', ['all', filterIcons]);
+
+    };
+    for (let i = 0; i < pElements.length; i++) {
+        pElements[i].addEventListener('click', pFunction, false);
+    }
 });
+
