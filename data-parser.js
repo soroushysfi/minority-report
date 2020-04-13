@@ -48,7 +48,7 @@ function parsingData (dataFile) {
                 'title': row['Primary Type'],
                 'icon': ((row['Primary Type'] in icons) ? icons[row['Primary Type']]: "triangle")+'-'+String(row['Arrest']),
                 "Hour": newDate.getHours(),
-                "Day": weekDay[newDate.getDay()],
+                "Day": weekDay[newDate.getDay()]
             },
             "geometry": {
                 "type": "Point",
@@ -56,8 +56,7 @@ function parsingData (dataFile) {
             }
         }
     });
-    chicagoCrimeGEOJSON.features = filteredData.slice(0, 100000);
-    // chicagoCrimeGEOJSON.features = filteredData;
+    chicagoCrimeGEOJSON.features = filteredData.sort(() => Math.random() - 0.5).slice(0, 100000);
 
     let beats = [], beatsJson = [];
     chicagoCrimeGEOJSON.features.forEach(crime => {

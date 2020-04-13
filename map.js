@@ -139,6 +139,7 @@ map.on('load', function() {
         } else {
             console.log('error');
         }
+        filterHour = ['==', ['number', ['get', 'Hour']], hour_g];
         map.setFilter('crimes', ['all', filterDay, filterHour]);
     });
     // map.setFilter('crimes', ['match', ['get', 'icon'], ['baseball-true'], true, false]);
@@ -147,8 +148,8 @@ map.on('load', function() {
     let pFunction = function(e) {
         const filterText = e.toElement.children[0].textContent;
         const filterIcons = ['match', ['get', 'icon'], [filterText+'-true', filterText+'-false'], true, false];
-        map.setFilter('crimes', ['all', filterIcons]);
-
+        filterHour = ['==', ['number', ['get', 'Hour']], hour_g]
+        map.setFilter('crimes', ['all', filterHour, filterIcons]);
     };
     for (let i = 0; i < pElements.length; i++) {
         pElements[i].addEventListener('click', pFunction, false);
