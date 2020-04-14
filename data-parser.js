@@ -56,7 +56,8 @@ function parsingData (dataFile) {
             }
         }
     });
-    chicagoCrimeGEOJSON.features = filteredData.sort(() => Math.random() - 0.5).slice(0, 100000);
+    // chicagoCrimeGEOJSON.features = filteredData.sort(() => Math.random() - 0.5).slice(0, 100000);
+    chicagoCrimeGEOJSON.features = filteredData;
 
     let beats = [], beatsJson = [];
     chicagoCrimeGEOJSON.features.forEach(crime => {
