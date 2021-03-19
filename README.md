@@ -4,6 +4,8 @@
 For convenience we have put the data in the repository.  
 Data:  [CHICAGO DATA PORTAL](https://data.cityofchicago.org/Public-Safety/Crimes-2017/d62x-nvdr)
 
+You can check the live app [here](https://minority-report-infoviz.herokuapp.com/).
+
 ### Install all the dependencies
 
 Run the code below in terminal to install all the dependencies:  
